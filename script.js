@@ -1,18 +1,10 @@
 var questions = [
-    "What's the capital of Kentucky?",
-    "What's the capital of California?",
-    "What's the capital of Arizona?",
-    "What's the capital of Kansas?",
-    "Who's the first president of the United States?"
+];
+var answers = [
 ];
 
-var answers = [
-    "Frankfort",
-    "Sacramento",
-    "Phoenix",
-    "Topeka",
-    "George Washington"
-];
+//  "Who's the first president of the United States?"
+//  "George Washington"
 
 var currentQuestion = 0;
 var score = 0;
@@ -24,6 +16,11 @@ function setup() {
     var correctButton = document.getElementById("correctButton");
     var incorrectButton = document.getElementById("incorrectButton");
     var newGameButton = document.getElementById("newGameButton");
+
+    for (var i=0; i<states.length; i++) {
+        questions.push("What's the capital of "+states[i][0]+"?");
+        answers.push(states[i][1]);
+    }
 
     showQuestion();
 }
