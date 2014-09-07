@@ -1,5 +1,13 @@
-var question = document.getElementById("question")
-question.innerHTML = "What's the capital of Kentucky?"
+function setup() {
+    showQuestion();
+}
 
-var answers = document.getElementById("answers");
-answers.innerHTML = "Frankfort"
+function showQuestion() {
+    var question = document.getElementById("question");
+    question.innerHTML = "What's the capital of Kentucky?";
+}
+
+function showAnswer() {
+    var answer = document.getElementById("answer");
+    answer.innerHTML = "Frankfort";
+}
