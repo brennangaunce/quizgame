@@ -1,26 +1,36 @@
-var questions = [
-];
-var answers = [
-];
-
-//  "Who's the first president of the United States?"
-//  "George Washington"
+var questions = [];
+var answers = [];
 
 var currentQuestion = 0;
 var score = 0;
 
 function setup() {
-    var question = document.getElementById("question");
-    var answer = document.getElementById("answer");
-    var checkAnswerButton = document.getElementById("checkAnswerButton");
-    var correctButton = document.getElementById("correctButton");
-    var incorrectButton = document.getElementById("incorrectButton");
-    var newGameButton = document.getElementById("newGameButton");
-
-    for (var i=0; i<states.length; i++) {
-        questions.push("What's the capital of "+states[i][0]+"?");
-        answers.push(states[i][1]);
+    var $ = function (id) {
+        return document.getElementById(id);
     }
+
+    question = $("question");
+    answer = $("answer");
+    checkAnswerButton = $("checkAnswerButton");
+    correctButton = $("correctButton");
+    incorrectButton = $("incorrectButton");
+    newGameButton = $("newGameButton");
+    scoreText = $("score");
+
+    var randomQuestions = [];
+    var randomAnswers = [];
+    while (questions.length > 0) {
+        var pick = Math.floor(Math.random() * questions.length);
+        randomQuestions.push(questions[pick]);
+        randomAnswers.push(answers[pick]);
+        questions.splice(pick,1);
+        answers.splice(pick,1);
+    }
+
+    questions = randomQuestions;
+    answers = randomAnswers;
+
+    scoreText.innerHTML = "-";
 
     showQuestion();
 }
@@ -52,6 +62,7 @@ function showAnswerButtons() {
 
 function doCorrect() {
     score = score + 1;
+
     showNextQuestion();
 }
 
@@ -59,9 +70,22 @@ function doIncorrect() {
     showNextQuestion();
 }
 
+function showScore() {
+    if (score == currentQuestion) {
+        scoreText.innerHTML = "All correct: "+score;
+    }
+    else {
+        var percentage = Math.round(score/currentQuestion*100);
+        scoreText.innerHTML = score + " correct out of " + currentQuestion + " = " + percentage + "%";
+    }
+}
+
 function showNextQuestion() {
-    var nextQuestion = currentQuestion+1;
-    if (nextQuestion >= questions.length) {
+    currentQuestion = currentQuestion+1;
+
+    showScore();
+
+    if (currentQuestion >= questions.length) {
         alert("That's all the questions!\nYou got "+score+" questions right!");
 
         checkAnswerButton.style.display = "none";
@@ -73,12 +97,13 @@ function showNextQuestion() {
         return;
     }
 
-    currentQuestion = nextQuestion;
-
     showQuestion();
 }
 
 function newGame() {
     currentQuestion = 0;
+    score = 0;
+
+    scoreText.innerHTML = "-";
     showQuestion();
 }

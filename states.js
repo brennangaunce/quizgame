@@ -16,14 +16,14 @@ var states = [
     ["Iowa","Des Moines","Ames"],
     ["Kansas","Topeka","Kansas City"],
     ["Kentucky","Frankfort","Louisville","Lexington","Covington"],
-    ["Louisiana","Baton Rouge"],
+    ["Louisiana","Baton Rouge","New Orleans"],
     ["Maine","Augusta","Portland","Bangor"],
     ["Maryland","Annapolis","Baltimore","Ocean City","Hagerstown"],
-    ["Massachusetts","Boston","Springfield","Pawtucket","Worcester"],
+    ["Massachusetts","Boston","Worcester"],
     ["Michigan","Lansing","Detroit"],
     ["Minnesota","St. Paul","Minneapolis"],
     ["Mississippi","Jackson"],
-    ["Missouri","Jefferson City","St. Louis","Kansas City"],
+    ["Missouri","Jefferson City","St. Louis"],
     ["Montana","Helena"],
     ["Nebraska","Lincoln"],
     ["Nevada","Carson City","Las Vegas","Reno"],
@@ -37,7 +37,7 @@ var states = [
     ["Oklahoma","Oklahoma City","Tulsa"],
     ["Oregon","Salem","Portland"],
     ["Pennsylvania","Harrisburg","Philadelphia","Pittsburg","Allentown"],
-    ["Rhode Island","Providence"],
+    ["Rhode Island","Providence","Pawtucket"],
     ["South Carolina","Columbia","Charleston"],
     ["South Dakota","Pierre"],
     ["Tennessee","Nashville","Knoxville","Memphis"],
@@ -50,3 +50,21 @@ var states = [
     ["Wisconsin","Madison","Milwaukee"],
     ["Wyoming","Cheyenne","Casper","Laramie"]
 ];
+
+for (var i=0; i<states.length; i++) {
+    questions.push("What's the capital of "+states[i][0]+"?");
+    answers.push(states[i][1]);
+}
+
+for (var i=0; i<states.length; i++) {
+    questions.push("Which state has the capital "+states[i][1]+"?");
+    answers.push(states[i][0]);
+}
+
+for (var i=0; i<states.length; i++) {
+    var state = states[i];
+    for (var j=2; j<state.length; j++) {
+        questions.push("Which state is "+states[i][j]+" in?");
+        answers.push(states[i][0]);
+    }
+}
