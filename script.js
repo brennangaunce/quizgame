@@ -13,36 +13,66 @@ var answers = [
 ];
 
 var currentQuestion = 0;
+var score = 0;
 
 function setup() {
     var question = document.getElementById("question");
     var answer = document.getElementById("answer");
     var checkAnswerButton = document.getElementById("checkAnswerButton");
-    var nextQuestionButton = document.getElementById("nextQuestionButton");
+    var correctButton = document.getElementById("correctButton");
+    var incorrectButton = document.getElementById("incorrectButton");
+    var newGameButton = document.getElementById("newGameButton");
 
     showQuestion();
 }
 
 function showQuestion() {
     question.innerHTML = questions[currentQuestion];
-    nextQuestionButton.style.display = "none";
+    answer.innerHTML = "&nbsp;";
+
+    hideAnswerButtons();
 }
 
 function showAnswer() {
     answer.innerHTML = answers[currentQuestion];
 
-    nextQuestionButton.style.display = "inline";
+    showAnswerButtons();
+}
+
+function hideAnswerButtons() {
+    checkAnswerButton.style.display = "inline";
+    correctButton.style.display = "none";
+    incorrectButton.style.display = "none";
+}
+
+function showAnswerButtons() {
+    checkAnswerButton.style.display = "none";
+    correctButton.style.display = "inline";
+    incorrectButton.style.display = "inline";
+}
+
+function doCorrect() {
+    score = score + 1;
+    showNextQuestion();
+}
+
+function doIncorrect() {
+    showNextQuestion();
 }
 
 function showNextQuestion() {
     var nextQuestion = currentQuestion+1;
     if (nextQuestion >= questions.length) {
-        alert("That's all the questions!");
+        alert("That's all the questions!\nYou got "+score+" questions right!");
         return;
     }
 
     currentQuestion = nextQuestion;
 
     showQuestion();
-    answer.innerHTML = "&nbsp;";
+}
+
+function newGame() {
+    currentQuestion = 0;
+    showQuestion();
 }
