@@ -68,3 +68,16 @@ for (var i=0; i<states.length; i++) {
         answers.push(states[i][0]);
     }
 }
+
+
+questions.push("What is the largest state by area?");
+answers.push("Alaska");
+
+questions.push("What is the second largest state by area?");
+answers.push("Texas");
+
+questions.push("What is the third largest state by area?");
+answers.push("California");
+
+questions.push("What is the fourth largest state by area?");
+answers.push("Montana");
